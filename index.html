@@ -1,0 +1,926 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Miqueas Machín Studio — Peluquería masculina & visagismo · Las Palmas</title>
+<meta name="description" content="Peluquería masculina en Las Palmas de Gran Canaria. Asesoría con visagismo incluida en cada cita. Cortes personalizados, barba, color y tratamientos capilares.">
+<meta name="theme-color" content="#F3F1EC">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter+Tight:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<!--
+  ─────────────────────────────────────────────────────────────
+  PROPUESTA · MIQUEAS MACHÍN STUDIO
+  ─────────────────────────────────────────────────────────────
+  VOICE    Sereno, preciso, masculino sin estridencias. Frases cortas.
+           Habla de arquitectura del rostro, no de "looks".
+  IDEA     "El rostro tiene una geometría." El visagismo (su sello) se
+           convierte en el lenguaje visual: líneas guía, proporciones,
+           retícula técnica que se dibuja sobre los retratos.
+  PICTURE  Fotos reales en img/ (descargadas de miqueasmachinstudio.com
+           e Instagram @miqueasmachin, nov 2026) con una capa verde/
+           petróleo para unificar. Las de Instagram son de baja
+           resolución (≤640px): pedir originales al cliente. Siguen como
+           placeholder: bodegón de productos, avatares y mapa.
+  COLOUR   Minimal monocromo: papel cálido (#F3F1EC), tinta (#111),
+           grises cálidos (#77746E). Fotos en B/N; en la galería se
+           colorean al pasar el ratón. Las guías del hero usan
+           mix-blend-mode:difference.
+  LAYOUT   Editorial asimétrico: serif display gigante + grotesca fina +
+           mono técnica. Secciones: hero con retícula de visagismo,
+           manifiesto que se ilumina con el scroll, servicios con
+           preview que sigue al cursor, galería horizontal anclada,
+           testimonios en escena, academia, contacto con formulario.
+  DATOS    Reales de miqueasmachinstudio.com (nov 2026). Sin precios ni
+           horario publicados → no se inventan. Dirección: pendiente.
+           TESTIMONIOS: PROVISIONALES (inventados a petición). Sustituir
+           por reseñas reales (Booksy / Google) antes de publicar.
+  ─────────────────────────────────────────────────────────────
+-->
+
+<style>
+:root{
+  /* Minimal · papel, tinta y grises cálidos */
+  --ink:#F3F1EC; --abyss:#EEEBE5; --pine:#EAE7E1; --forest:#DFDBD4; --petrol:#E6E3DD; --deep:#ECE9E3;
+  --sage:#77746E; --lichen:#111111; --mist:#111111; --fog:rgba(17,17,17,.68); --dim:rgba(17,17,17,.44);
+  --hover:#3A3936;
+  --line:rgba(17,17,17,.12); --line-2:rgba(17,17,17,.24);
+  --serif:"Instrument Serif",Georgia,serif; --sans:"Inter Tight",system-ui,sans-serif; --mono:"JetBrains Mono",ui-monospace,monospace;
+  --gut:clamp(16px,4vw,56px); --ease:cubic-bezier(.19,1,.22,1);
+  color-scheme:light;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%}
+html.lenis,html.lenis body{height:auto}
+.lenis.lenis-smooth{scroll-behavior:auto!important}
+body{background:var(--ink);color:var(--mist);font-family:var(--sans);font-weight:300;line-height:1.55;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+body.loading{overflow:hidden}
+a{color:inherit;text-decoration:none}
+button,input,select,textarea{font:inherit;color:inherit}
+img{display:block;max-width:100%}
+::selection{background:var(--lichen);color:var(--ink)}
+.serif{font-family:var(--serif);font-weight:400}
+.it{font-style:italic}
+.mono{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase}
+.wrap{padding-inline:var(--gut)}
+
+/* grain + vignette */
+.grain{position:fixed;inset:-50%;z-index:90;pointer-events:none;opacity:.035;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");animation:grain 1.2s steps(6) infinite}
+@keyframes grain{0%{transform:translate(0,0)}20%{transform:translate(-3%,2%)}40%{transform:translate(2%,-4%)}60%{transform:translate(-4%,-1%)}80%{transform:translate(3%,3%)}100%{transform:translate(0,0)}}
+
+/* ── proposal banner ── */
+.proposal{position:fixed;z-index:60;left:16px;right:16px;bottom:16px;margin-inline:auto;width:fit-content;max-width:calc(100% - 32px);border-radius:100px;background:var(--lichen);color:var(--ink);font-family:var(--mono);font-size:11px;letter-spacing:.06em;padding:9px 12px 9px 18px;display:flex;gap:12px;align-items:center;justify-content:space-between;box-shadow:0 12px 40px rgba(0,0,0,.12)}
+.proposal b{font-weight:500}
+.proposal button{background:none;border:0;cursor:pointer;font-size:16px;line-height:1;padding:0 4px}
+
+/* ── preloader ── */
+.loader{position:fixed;inset:0;z-index:100;background:var(--ink);display:grid;place-items:center}
+.loader__inner{width:min(520px,80vw)}
+.loader__row{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:14px}
+.loader__name{font-family:var(--serif);font-size:clamp(28px,4vw,44px);line-height:1;overflow:hidden}
+.loader__name span{display:inline-block;transform:translateY(100%)}
+.loader__count{font-family:var(--mono);font-size:12px;color:var(--sage)}
+.loader__bar{height:1px;background:var(--line)}
+.loader__bar i{display:block;height:100%;width:0;background:var(--lichen)}
+
+/* ── cursor ── */
+.cursor,.cursor-dot{position:fixed;top:0;left:0;z-index:95;pointer-events:none;border-radius:50%;transform:translate(-50%,-50%)}
+.cursor{width:38px;height:38px;border:1px solid var(--line-2);display:grid;place-items:center;transition:width .45s var(--ease),height .45s var(--ease),background .3s,border-color .3s}
+.cursor span{font-family:var(--mono);font-size:10px;letter-spacing:.14em;color:var(--ink);opacity:0;transition:opacity .2s}
+.cursor.is-link{width:64px;height:64px;border-color:var(--lichen)}
+.cursor.is-view{width:96px;height:96px;background:var(--lichen);border-color:var(--lichen)}
+.cursor.is-view span{opacity:1}
+.cursor-dot{width:5px;height:5px;background:var(--lichen)}
+@media (hover:none),(pointer:coarse){.cursor,.cursor-dot{display:none}}
+
+/* ── nav ── */
+.nav{position:fixed;top:0;left:0;right:0;z-index:50;padding:18px var(--gut);display:grid;grid-template-columns:1fr auto 1fr;align-items:center;transition:transform .6s var(--ease),background .4s,padding .4s}
+.nav.scrolled{background:rgba(243,241,236,.72);backdrop-filter:blur(14px) saturate(140%);-webkit-backdrop-filter:blur(14px) saturate(140%);padding-block:12px;border-bottom:1px solid var(--line)}
+.nav.hide{transform:translateY(-110%)}
+.brand{display:flex;align-items:center;gap:12px}
+.mono-mark{width:40px;height:40px;border:1px solid var(--line-2);border-radius:50%;display:grid;place-items:center;font-family:var(--serif);font-size:17px;font-style:italic;letter-spacing:-.02em}
+.brand__txt{font-size:13px;line-height:1.15;font-weight:500;letter-spacing:.01em}
+.brand__txt small{display:block;font-family:var(--mono);font-size:9.5px;letter-spacing:.16em;color:var(--dim);font-weight:400;text-transform:uppercase;margin-top:3px}
+.nav__links{display:flex;gap:30px;font-size:13px}
+.nav__links a{position:relative;color:var(--fog);transition:color .3s}
+.nav__links a::after{content:"";position:absolute;left:0;bottom:-4px;height:1px;width:100%;background:var(--lichen);transform:scaleX(0);transform-origin:right;transition:transform .5s var(--ease)}
+.nav__links a:hover{color:var(--mist)}
+.nav__links a:hover::after{transform:scaleX(1);transform-origin:left}
+.nav__right{display:flex;justify-content:flex-end;align-items:center;gap:22px}
+.clock{color:var(--dim)}
+.clock b{color:var(--sage);font-weight:400}
+.btn{position:relative;display:inline-flex;align-items:center;gap:10px;padding:13px 22px;border-radius:100px;font-size:13px;font-weight:500;letter-spacing:.01em;overflow:hidden;isolation:isolate;border:1px solid var(--lichen);color:var(--ink);background:var(--lichen);white-space:nowrap;cursor:pointer}
+.btn::before{content:"";position:absolute;inset:0;z-index:-1;background:var(--hover);border-radius:inherit;transform:translateY(101%);transition:transform .6s var(--ease)}
+.btn:hover::before{transform:translateY(0)}
+.btn--ghost{background:transparent;color:var(--mist);border-color:var(--line-2)}
+.btn--ghost::before{background:var(--lichen)}
+.btn--ghost:hover{color:var(--ink)}
+.btn .arr{display:inline-block;transition:transform .5s var(--ease)}
+.btn:hover .arr{transform:translateX(4px) rotate(-45deg)}
+.burger{display:none;width:44px;height:44px;border-radius:50%;border:1px solid var(--line-2);background:none;cursor:pointer;position:relative}
+.burger i{position:absolute;left:13px;right:13px;height:1px;background:var(--mist);transition:transform .5s var(--ease),top .5s var(--ease)}
+.burger i:nth-child(1){top:18px}.burger i:nth-child(2){top:25px}
+.menu-open .burger i:nth-child(1){top:21.5px;transform:rotate(45deg)}
+.menu-open .burger i:nth-child(2){top:21.5px;transform:rotate(-45deg)}
+.mmenu{position:fixed;inset:0;z-index:45;background:var(--pine);clip-path:circle(0 at calc(100% - 40px) 40px);transition:clip-path .9s var(--ease);display:flex;flex-direction:column;justify-content:flex-end;padding:100px var(--gut) 40px}
+.menu-open .mmenu{clip-path:circle(150% at calc(100% - 40px) 40px)}
+.mmenu a.big{font-family:var(--serif);font-size:clamp(44px,12vw,72px);line-height:1.05;display:block;border-bottom:1px solid var(--line);padding:6px 0}
+.mmenu .mono{margin-top:28px;color:var(--sage)}
+
+/* ── placeholders ── */
+.ph{position:relative;overflow:hidden;background:
+  radial-gradient(120% 80% at 20% 0%,rgba(17,17,17,.10),transparent 60%),
+  linear-gradient(160deg,var(--forest),var(--petrol) 60%,var(--abyss));
+}
+.ph::before{content:"";position:absolute;inset:0;background:repeating-linear-gradient(135deg,rgba(17,17,17,.045) 0 1px,transparent 1px 14px)}
+.ph::after{content:"";position:absolute;inset:0;background:linear-gradient(100deg,transparent 30%,rgba(17,17,17,.07) 50%,transparent 70%);transform:translateX(-100%);animation:sheen 4.5s var(--ease) infinite}
+@keyframes sheen{60%,100%{transform:translateX(100%)}}
+.ph > img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:grayscale(1) contrast(1.05);transition:filter 1s var(--ease)}
+.gframe:hover .ph > img,.svc-preview .ph > img{filter:grayscale(0) contrast(1)}
+.ph.has-img::before,.ph.has-img::after{display:none}
+.ph__tag{position:absolute;left:14px;bottom:14px;z-index:2;display:flex;align-items:center;gap:8px;font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--sage);background:rgba(243,241,236,.55);backdrop-filter:blur(6px);padding:7px 10px;border:1px solid var(--line);border-radius:4px}
+.ph__tag::before{content:"";width:9px;height:9px;border:1px solid var(--sage);border-radius:50%;box-shadow:inset 0 0 0 2px rgba(243,241,236,.9),inset 0 0 0 5px var(--sage)}
+.ph__cross{position:absolute;inset:0;z-index:1;pointer-events:none}
+.ph__cross::before,.ph__cross::after{content:"";position:absolute;background:var(--line)}
+.ph__cross::before{left:50%;top:0;bottom:0;width:1px}
+.ph__cross::after{top:50%;left:0;right:0;height:1px}
+
+/* ── hero ── */
+.hero{position:relative;min-height:100svh;padding:130px var(--gut) 0;display:grid;grid-template-rows:1fr auto;overflow:hidden;
+  background:
+    radial-gradient(60% 70% at 78% 40%,transparent,transparent 70%),
+    radial-gradient(50% 60% at 10% 90%,transparent,transparent 70%),
+    var(--ink)}
+.hero__grid{display:grid;grid-template-columns:repeat(12,1fr);gap:20px;align-items:center;position:relative;z-index:2}
+.hero__copy{grid-column:1 / span 7;position:relative;z-index:3}
+.eyebrow{display:flex;align-items:center;gap:14px;color:var(--sage);margin-bottom:28px}
+.eyebrow::before{content:"";width:34px;height:1px;background:var(--sage)}
+.hero h1{font-family:var(--serif);font-weight:400;font-size:clamp(58px,10.4vw,188px);line-height:.86;letter-spacing:-.035em}
+.hero h1 .l2{display:block;padding-left:.9em}
+.hero h1 em{color:var(--lichen)}
+.line{display:block;overflow:hidden;padding-bottom:.06em}
+.line > span{display:inline-block;will-change:transform}
+.hero__sub{display:grid;grid-template-columns:auto 1fr;gap:28px;align-items:start;margin-top:44px;max-width:620px}
+.hero__sub p{font-size:clamp(15px,1.25vw,18px);color:var(--fog);max-width:400px}
+.hero__sub .idx{color:var(--dim);padding-top:5px}
+.hero__cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:36px}
+.hero__visual{grid-column:8 / span 5;position:relative;aspect-ratio:4/5;max-height:76vh;justify-self:end;width:100%}
+.arch{position:absolute;inset:0;border-radius:999px 999px 18px 18px;overflow:hidden;clip-path:inset(100% 0 0 0 round 999px 999px 18px 18px)}
+.arch .ph{position:absolute;inset:-8%}
+.guides{position:absolute;inset:-6% -10%;z-index:3;pointer-events:none;overflow:visible;mix-blend-mode:difference}
+.guides *{fill:none;stroke:#fff;stroke-width:1;vector-effect:non-scaling-stroke}
+.guides .soft{stroke:rgba(255,255,255,.45);stroke-dasharray:3 6}
+.guides text{fill:#fff;stroke:none;font-family:var(--mono);font-size:9px;letter-spacing:.14em}
+.guides .dot{fill:#fff;stroke:none}
+.hero__badge{position:absolute;left:-58px;bottom:12%;z-index:4;width:124px;height:124px;border-radius:50%;background:var(--ink);border:1px solid var(--line-2);display:grid;place-items:center}
+.hero__badge svg{position:absolute;inset:6px;animation:spin 18s linear infinite}
+.hero__badge svg text{fill:var(--sage);font-family:var(--mono);font-size:8.6px;letter-spacing:.32em}
+.hero__badge b{font-family:var(--serif);font-weight:400;font-size:34px;font-style:italic;color:var(--lichen)}
+@keyframes spin{to{transform:rotate(360deg)}}
+.hero__meta{position:absolute;right:var(--gut);top:130px;text-align:right;color:var(--dim);z-index:2;display:none}
+.scroll-cue{position:absolute;left:var(--gut);bottom:100px;z-index:3;display:flex;align-items:center;gap:12px;color:var(--dim)}
+.scroll-cue i{width:1px;height:46px;background:var(--line);position:relative;overflow:hidden}
+.scroll-cue i::after{content:"";position:absolute;left:0;top:-50%;width:1px;height:50%;background:var(--lichen);animation:drip 2.2s var(--ease) infinite}
+@keyframes drip{to{top:100%}}
+
+/* marquee */
+.marquee{position:relative;z-index:2;border-top:1px solid var(--line);margin-inline:calc(var(--gut)*-1);padding:22px 0;overflow:hidden;white-space:nowrap;margin-top:60px}
+.marquee__track{display:inline-flex;gap:48px;animation:mq 38s linear infinite;padding-left:48px}
+.marquee span{font-family:var(--serif);font-size:clamp(22px,2.6vw,36px);font-style:italic;color:var(--fog);display:inline-flex;align-items:center;gap:48px}
+.marquee span::after{content:"";width:9px;height:9px;border:1px solid var(--sage);transform:rotate(45deg)}
+@keyframes mq{to{transform:translateX(-50%)}}
+
+/* ── section shared ── */
+section{position:relative}
+.sec-head{display:grid;grid-template-columns:repeat(12,1fr);gap:20px;margin-bottom:clamp(48px,7vw,100px);align-items:end}
+.sec-head .mono{grid-column:1 / span 3;color:var(--sage);display:flex;gap:12px}
+.sec-head .mono b{color:var(--dim);font-weight:400}
+.sec-head h2{grid-column:4 / span 9;font-family:var(--serif);font-weight:400;font-size:clamp(42px,6.4vw,112px);line-height:.92;letter-spacing:-.03em}
+.sec-head h2 em{color:var(--lichen)}
+
+/* ── manifesto ── */
+.manifesto{padding:clamp(120px,16vw,220px) var(--gut) clamp(100px,12vw,160px)}
+.manifesto__grid{display:grid;grid-template-columns:repeat(12,1fr);gap:20px}
+.manifesto__label{grid-column:1 / span 3;color:var(--sage)}
+.manifesto__text{grid-column:4 / span 9;font-family:var(--serif);font-size:clamp(32px,4.4vw,78px);line-height:1.04;letter-spacing:-.02em}
+.manifesto__text .w{opacity:.14;transition:none}
+.manifesto__text em{color:var(--lichen)}
+.stats{grid-column:4 / span 9;display:grid;grid-template-columns:repeat(3,1fr);margin-top:clamp(70px,9vw,130px);border-top:1px solid var(--line)}
+.stat{padding:28px 24px 0 0;border-right:1px solid var(--line);margin-right:24px}
+.stat:last-child{border-right:0;margin-right:0}
+.stat__n{font-family:var(--serif);font-size:clamp(56px,7vw,120px);line-height:1;letter-spacing:-.04em;display:flex;align-items:flex-start}
+.stat__n sup{font-size:.36em;color:var(--lichen);margin-left:4px;margin-top:.25em}
+.stat p{color:var(--fog);font-size:14px;margin-top:12px;max-width:220px}
+.portrait-strip{grid-column:1 / span 3;align-self:start;margin-top:clamp(70px,9vw,130px)}
+.portrait-strip .ph{aspect-ratio:3/4;border-radius:10px}
+.portrait-strip blockquote{font-family:var(--serif);font-style:italic;font-size:19px;line-height:1.3;margin-top:18px;color:var(--fog)}
+.portrait-strip cite{display:block;margin-top:10px;font-style:normal;color:var(--dim)}
+
+/* ── visagismo method ── */
+.method{padding:clamp(100px,12vw,160px) var(--gut);background:var(--ink);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.method__wrap{display:grid;grid-template-columns:repeat(12,1fr);gap:20px}
+.method__sticky{grid-column:1 / span 5;position:sticky;top:120px;align-self:start;aspect-ratio:1;max-width:520px}
+.method__sticky svg{width:100%;height:100%;overflow:visible}
+.method__sticky svg *{fill:none;stroke:var(--line-2);stroke-width:1;vector-effect:non-scaling-stroke;transition:stroke .6s,opacity .6s}
+.method__sticky svg .on{stroke:var(--lichen)}
+.method__sticky svg text{fill:var(--dim);stroke:none;font-family:var(--mono);font-size:10px;letter-spacing:.14em}
+.method__sticky svg circle.node{fill:var(--ink)}
+.method__sticky svg circle.node.on{fill:var(--lichen)}
+.shape-label{position:absolute;left:0;bottom:-10px;color:var(--sage)}
+.method__steps{grid-column:7 / span 6}
+.step{padding:44px 0 56px;border-top:1px solid var(--line);opacity:.32;transition:opacity .6s}
+.step.active{opacity:1}
+.step__n{color:var(--sage);margin-bottom:22px;display:block}
+.step h3{font-family:var(--serif);font-weight:400;font-size:clamp(34px,3.6vw,58px);line-height:1;letter-spacing:-.02em;margin-bottom:18px}
+.step p{color:var(--fog);max-width:460px}
+
+/* ── services ── */
+.services{padding:clamp(110px,13vw,180px) var(--gut)}
+.svc-list{border-top:1px solid var(--line)}
+.svc{position:relative;display:grid;grid-template-columns:repeat(12,1fr);gap:20px;align-items:center;padding:clamp(26px,3vw,40px) 0;border-bottom:1px solid var(--line);cursor:pointer}
+.svc::before{content:"";position:absolute;inset:0 calc(var(--gut)*-1);background:var(--pine);transform:scaleY(0);transform-origin:bottom;transition:transform .7s var(--ease);z-index:-1}
+.svc:hover::before{transform:scaleY(1)}
+.svc__n{grid-column:1 / span 1;color:var(--dim)}
+.svc h3{grid-column:2 / span 6;font-family:var(--serif);font-weight:400;font-size:clamp(34px,4.6vw,80px);line-height:1;letter-spacing:-.025em;transition:transform .7s var(--ease),color .4s}
+.svc:hover h3{transform:translateX(18px);color:var(--lichen)}
+.svc p{grid-column:8 / span 4;color:var(--fog);font-size:15px;max-width:380px}
+.svc__arr{grid-column:12;justify-self:end;width:52px;height:52px;border-radius:50%;border:1px solid var(--line-2);display:grid;place-items:center;transition:transform .6s var(--ease),background .4s,color .4s}
+.svc:hover .svc__arr{background:var(--lichen);color:var(--ink);transform:rotate(-45deg)}
+.svc-preview{position:fixed;top:0;left:0;z-index:40;width:280px;aspect-ratio:4/5;pointer-events:none;border-radius:14px;overflow:hidden;transform:translate(-50%,-50%) scale(.6);opacity:0;transition:opacity .4s,transform .6s var(--ease)}
+.svc-preview.show{opacity:1;transform:translate(-50%,-50%) scale(1)}
+.svc-preview .ph{position:absolute;inset:0}
+.svc-note{display:flex;justify-content:space-between;flex-wrap:wrap;gap:20px;margin-top:40px;color:var(--dim)}
+
+/* ── products band ── */
+.products{margin:0 var(--gut);border-radius:24px;overflow:hidden;display:grid;grid-template-columns:1.1fr 1fr;background:var(--deep);border:1px solid var(--line)}
+.products__copy{padding:clamp(36px,5vw,80px)}
+.products__copy .mono{color:var(--sage)}
+.products__copy h3{font-family:var(--serif);font-weight:400;font-size:clamp(36px,4.2vw,68px);line-height:.98;letter-spacing:-.02em;margin:22px 0}
+.products__copy h3 em{color:var(--lichen)}
+.products__copy p{color:var(--fog);max-width:440px}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin:28px 0 34px}
+.chip{border:1px solid var(--line-2);border-radius:100px;padding:8px 14px;font-size:12.5px;color:var(--fog);display:inline-flex;gap:8px;align-items:center}
+.chip::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--lichen)}
+.products .ph{min-height:420px}
+
+/* ── gallery horizontal ── */
+.gallery{padding-top:clamp(110px,13vw,180px);overflow:hidden}
+.gallery__pin{height:100svh;display:flex;flex-direction:column;justify-content:center}
+.gallery .sec-head{padding-inline:var(--gut);margin-bottom:40px}
+.gallery__track{display:flex;gap:clamp(14px,2vw,28px);padding-inline:var(--gut);will-change:transform}
+.gallery .sec-head h2{font-size:clamp(42px,5vw,88px)}
+.gallery__pin{padding-top:80px}
+.gframe{flex:0 0 auto;height:min(46vh,500px);border-radius:14px;overflow:hidden;position:relative}
+.gframe .ph{position:absolute;inset:0;transition:transform 1.2s var(--ease)}
+.gframe:hover .ph{transform:scale(1.05)}
+.gframe.r45{aspect-ratio:4/5}.gframe.r34{aspect-ratio:3/4}.gframe.r11{aspect-ratio:1}.gframe.r169{aspect-ratio:16/10}
+.gallery__track{align-items:flex-start}
+.gframe.low{margin-top:8vh;height:min(42vh,420px)}
+.gframe figcaption{position:absolute;top:14px;left:14px;z-index:2;color:var(--mist);background:var(--ink);padding:6px 9px;border-radius:4px;font-family:var(--mono);font-size:10px;letter-spacing:.14em}
+.gend{flex:0 0 auto;width:min(420px,80vw);display:flex;flex-direction:column;justify-content:center;gap:24px;padding-left:20px}
+.gend p{font-family:var(--serif);font-size:clamp(34px,3.4vw,52px);line-height:1;letter-spacing:-.02em}
+.gend p em{color:var(--lichen)}
+
+/* ── testimonials ── */
+.testi{padding:clamp(110px,13vw,180px) var(--gut);background:radial-gradient(70% 60% at 50% 50%,transparent,transparent 70%)}
+.testi__stage{position:relative;display:grid;grid-template-columns:repeat(12,1fr);gap:20px;min-height:440px}
+.testi__mark{grid-column:1 / span 2;font-family:var(--serif);font-size:clamp(140px,16vw,260px);line-height:.7;color:var(--lichen);opacity:.14}
+.testi__body{grid-column:3 / span 9;position:relative}
+.quote{position:absolute;inset:0;opacity:0;visibility:hidden}
+.quote.active{position:relative;opacity:1;visibility:visible}
+.quote blockquote{font-family:var(--serif);font-size:clamp(30px,3.6vw,62px);line-height:1.08;letter-spacing:-.02em}
+.quote blockquote .w{display:inline-block;overflow:hidden;vertical-align:top;padding-bottom:.08em}
+.quote blockquote .w > span{display:inline-block}
+.quote footer{display:flex;align-items:center;gap:18px;margin-top:44px}
+.avatar{width:56px;height:56px;border-radius:50%;overflow:hidden;flex:0 0 auto}
+.avatar .ph{width:100%;height:100%}
+.avatar .ph::after{display:none}
+.quote footer b{display:block;font-weight:500;font-size:15px}
+.quote footer span{color:var(--dim)}
+.stars{color:var(--lichen);letter-spacing:4px;font-size:13px;margin-left:auto}
+.testi__ctrl{grid-column:3 / span 10;display:flex;align-items:center;gap:22px;margin-top:56px}
+.testi__ctrl button{width:56px;height:56px;border-radius:50%;border:1px solid var(--line-2);background:none;cursor:pointer;transition:background .4s,color .4s}
+.testi__ctrl button:hover{background:var(--lichen);color:var(--ink)}
+.progress{flex:1;height:1px;background:var(--line);position:relative}
+.progress i{position:absolute;left:0;top:0;height:100%;width:0;background:var(--lichen)}
+.counter{color:var(--sage);min-width:60px;text-align:right}
+
+/* ── academy ── */
+.academy{margin:0 var(--gut);min-height:88vh;border-radius:28px;overflow:hidden;position:relative;display:grid;align-items:end;isolation:isolate}
+.academy > .ph{position:absolute;inset:0;z-index:-2}
+.academy::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(243,241,236,0) 25%,rgba(243,241,236,.82) 58%,rgba(243,241,236,.97) 78%)}
+.academy__inner{padding:clamp(32px,5vw,80px);display:grid;grid-template-columns:repeat(12,1fr);gap:20px;align-items:end}
+.academy__inner .mono{grid-column:1 / -1;color:var(--lichen)}
+.academy h2{grid-column:1 / span 8;font-family:var(--serif);font-weight:400;font-size:clamp(46px,7vw,128px);line-height:.9;letter-spacing:-.035em}
+.academy h2 em{color:var(--lichen)}
+.academy__side{grid-column:9 / span 4}
+.academy__side p{color:var(--fog);margin-bottom:28px}
+
+/* ── contact ── */
+.contact{padding:clamp(120px,14vw,200px) var(--gut) 60px}
+.contact__big{font-family:var(--serif);font-weight:400;font-size:clamp(64px,13vw,250px);line-height:.84;letter-spacing:-.045em;margin-bottom:clamp(60px,8vw,110px)}
+.contact__big em{color:var(--lichen)}
+.contact__big .line:nth-child(2){padding-left:1.2em}
+.contact__grid{display:grid;grid-template-columns:repeat(12,1fr);gap:20px}
+.cinfo{grid-column:1 / span 5;display:flex;flex-direction:column;gap:0}
+.crow{display:grid;grid-template-columns:110px 1fr;gap:20px;padding:22px 0;border-top:1px solid var(--line);align-items:baseline}
+.crow:last-child{border-bottom:1px solid var(--line)}
+.crow .mono{color:var(--dim)}
+.crow a,.crow span.v{font-size:clamp(17px,1.6vw,22px);font-weight:400;position:relative;width:fit-content}
+.crow a::after{content:"";position:absolute;left:0;bottom:-2px;height:1px;width:100%;background:var(--lichen);transform:scaleX(0);transform-origin:right;transition:transform .5s var(--ease)}
+.crow a:hover::after{transform:scaleX(1);transform-origin:left}
+.crow .todo{color:var(--sage);font-family:var(--mono);font-size:11px;letter-spacing:.08em}
+.socials{display:flex;gap:10px;flex-wrap:wrap}
+.socials a{border:1px solid var(--line-2);border-radius:100px;padding:8px 14px;font-size:13px!important;transition:background .3s,color .3s}
+.socials a::after{display:none}
+.socials a:hover{background:var(--lichen);color:var(--ink)}
+.form{grid-column:7 / span 6;background:var(--abyss);border:1px solid var(--line);border-radius:22px;padding:clamp(26px,3.4vw,48px)}
+.form h3{font-family:var(--serif);font-weight:400;font-size:clamp(30px,2.8vw,44px);line-height:1;margin-bottom:8px}
+.form > p{color:var(--fog);font-size:14px;margin-bottom:28px}
+.field{position:relative;margin-bottom:22px}
+.field input,.field select,.field textarea{width:100%;background:transparent;border:0;border-bottom:1px solid var(--line-2);padding:22px 0 10px;font-size:16px;outline:none;border-radius:0;transition:border-color .4s}
+.field textarea{resize:none;height:96px}
+.field select{appearance:none;cursor:pointer}
+.field select option{background:var(--pine)}
+.field label{position:absolute;left:0;top:22px;color:var(--dim);font-size:15px;pointer-events:none;transition:all .4s var(--ease)}
+.field input:focus,.field textarea:focus,.field select:focus{border-color:var(--lichen)}
+.field input:focus + label,.field input:not(:placeholder-shown) + label,.field textarea:focus + label,.field textarea:not(:placeholder-shown) + label,.field select + label{top:0;font-size:10px;letter-spacing:.14em;text-transform:uppercase;font-family:var(--mono);color:var(--sage)}
+.form__row{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.form__foot{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;margin-top:12px}
+.form__foot small{color:var(--dim);font-size:12px;max-width:260px}
+.map{grid-column:1 / -1;margin-top:clamp(60px,7vw,100px);height:clamp(260px,34vw,440px);border-radius:22px;overflow:hidden;position:relative}
+.map .ph{position:absolute;inset:0}
+.map__pin{position:absolute;left:50%;top:50%;z-index:2;transform:translate(-50%,-50%)}
+.map__pin i{display:block;width:14px;height:14px;border-radius:50%;background:var(--lichen);box-shadow:0 0 0 0 rgba(17,17,17,.5);animation:ping 2.4s infinite}
+@keyframes ping{70%{box-shadow:0 0 0 34px rgba(17,17,17,0)}100%{box-shadow:0 0 0 0 rgba(17,17,17,0)}}
+
+/* ── footer ── */
+.foot{padding:60px var(--gut) 28px;border-top:1px solid var(--line);overflow:hidden}
+.foot__top{display:flex;justify-content:space-between;flex-wrap:wrap;gap:30px;margin-bottom:60px}
+.foot__top nav{display:flex;gap:26px;flex-wrap:wrap;font-size:14px;color:var(--fog)}
+.foot__top nav a:hover{color:var(--lichen)}
+.foot__word{font-family:var(--serif);font-size:clamp(60px,15.5vw,300px);line-height:.8;letter-spacing:-.05em;white-space:nowrap;text-align:center;background:linear-gradient(180deg,var(--mist),rgba(17,17,17,.05));-webkit-background-clip:text;background-clip:text;color:transparent;user-select:none}
+.foot__bot{display:flex;justify-content:space-between;flex-wrap:wrap;gap:14px;margin-top:30px;color:var(--dim)}
+
+/* reveal base */
+[data-reveal]{opacity:0;transform:translateY(40px)}
+.no-js [data-reveal],.reduced [data-reveal]{opacity:1;transform:none}
+
+/* ── responsive ── */
+@media (max-width:1100px){
+  .nav__links{display:none}
+  .clock{display:none}
+}
+@media (max-width:900px){
+  .nav{grid-template-columns:1fr auto}
+  .nav__right .btn{display:none}
+  .burger{display:block}
+  .hero{padding-top:110px}
+  .hero__grid{grid-template-columns:1fr;gap:50px}
+  .hero__copy,.hero__visual{grid-column:1}
+  .hero__visual{max-width:440px;justify-self:center;max-height:none}
+  .hero__badge{left:-14px;width:104px;height:104px}
+  .hero h1 .l2{padding-left:.5em}
+  .scroll-cue{display:none}
+  .sec-head,.manifesto__grid,.method__wrap,.contact__grid,.academy__inner,.testi__stage{grid-template-columns:1fr}
+  .sec-head > *,.manifesto__grid > *,.method__wrap > *,.contact__grid > *,.academy__inner > *,.testi__stage > *{grid-column:1 / -1!important}
+  .method__sticky{position:relative;top:0;max-width:340px;margin:0 auto 30px;width:100%}
+  .stats{grid-template-columns:1fr}
+  .stat{border-right:0;margin-right:0;border-bottom:1px solid var(--line);padding-bottom:26px}
+  .portrait-strip{max-width:320px}
+  .svc{grid-template-columns:auto 1fr auto;gap:14px 18px}
+  .svc__n{grid-column:1}
+  .svc h3{grid-column:2}
+  .svc__arr{grid-column:3;width:44px;height:44px}
+  .svc p{grid-column:2 / span 2}
+  .products{grid-template-columns:1fr}
+  .products .ph{min-height:300px}
+  .gallery__pin{height:auto;padding-bottom:20px}
+  .gallery__track{overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:16px;scrollbar-width:none}
+  .gallery__track::-webkit-scrollbar{display:none}
+  .gframe{scroll-snap-align:start;height:min(62vh,480px)!important;align-self:auto!important}
+  .testi__mark{font-size:120px;margin-bottom:-30px}
+  .testi__stage{min-height:0}
+  .academy{min-height:80vh}
+  .form__row{grid-template-columns:1fr;gap:0}
+  .crow{grid-template-columns:1fr;gap:6px}
+}
+@media (max-width:560px){
+  .proposal{font-size:10px}
+  .proposal .xtra{display:none}
+  .brand__txt small{display:none}
+  .hero__cta .btn{flex:1;justify-content:center}
+  .contact__big .line:nth-child(2){padding-left:.4em}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition-duration:.01ms!important}
+  .arch{clip-path:none}
+  .manifesto__text .w{opacity:1}
+}
+</style>
+</head>
+<body class="loading">
+<div class="grain" aria-hidden="true"></div>
+
+<div class="loader" aria-hidden="true">
+  <div class="loader__inner">
+    <div class="loader__row">
+      <div class="loader__name"><span>Miqueas Machín <em>Studio</em></span></div>
+      <div class="loader__count">000</div>
+    </div>
+    <div class="loader__bar"><i></i></div>
+  </div>
+</div>
+
+<div class="cursor" aria-hidden="true"><span>VER</span></div>
+<div class="cursor-dot" aria-hidden="true"></div>
+
+<div class="proposal" id="proposal">
+  <span><b>Propuesta de diseño para Miqueas Machín Studio</b><span class="xtra"> · contenidos, datos y fotos reales de su web e Instagram · testimonios provisionales</span></span>
+  <button aria-label="Cerrar aviso" onclick="this.parentNode.remove()">×</button>
+</div>
+
+<!-- ═════════ NAV ═════════ -->
+<header class="nav" id="nav">
+  <a href="#top" class="brand" data-magnetic>
+    <span class="mono-mark">MM</span>
+    <span class="brand__txt">Miqueas Machín<small>Studio · Las Palmas</small></span>
+  </a>
+  <nav class="nav__links" aria-label="Principal">
+    <a href="#estudio">Estudio</a>
+    <a href="#metodo">Visagismo</a>
+    <a href="#servicios">Servicios</a>
+    <a href="#galeria">Trabajos</a>
+    <a href="#academia">Academia</a>
+    <a href="#contacto">Contacto</a>
+  </nav>
+  <div class="nav__right">
+    <span class="mono clock">LPGC <b id="clock">--:--</b></span>
+    <a class="btn" href="https://booksy.com/es-es/76404_miqueas-machin-studio_barberia_69556_las-palmas-de-gran-canaria" target="_blank" rel="noopener" data-magnetic>Reservar cita <span class="arr">→</span></a>
+    <button class="burger" id="burger" aria-label="Abrir menú"><i></i><i></i></button>
+  </div>
+</header>
+
+<div class="mmenu" id="mmenu">
+  <a class="big" href="#estudio">Estudio</a>
+  <a class="big" href="#metodo">Visagismo</a>
+  <a class="big" href="#servicios">Servicios</a>
+  <a class="big" href="#galeria">Trabajos</a>
+  <a class="big" href="#academia">Academia</a>
+  <a class="big" href="#contacto">Contacto</a>
+  <span class="mono">617 666 580 · miqueasmachinstudio@gmail.com</span>
+</div>
+
+<main id="top">
+
+<!-- ═════════ HERO ═════════ -->
+<section class="hero" id="hero">
+  <div class="hero__grid">
+    <div class="hero__copy">
+      <div class="eyebrow mono" data-hero-fade>Peluquería masculina · Visagismo · Las Palmas de G.C.</div>
+      <h1 aria-label="Tu rostro tiene arquitectura">
+        <span class="line"><span>Tu rostro</span></span>
+        <span class="line l2"><span>tiene <em class="it">arqui-</em></span></span>
+        <span class="line"><span><em class="it">tectura.</em></span></span>
+      </h1>
+      <div class="hero__sub" data-hero-fade>
+        <span class="mono idx">(01)</span>
+        <p>Cortes personalizados que leen la geometría de tu cara. Asesoría con visagismo incluida en cada cita, para que tu imagen refleje quién eres.</p>
+      </div>
+      <div class="hero__cta" data-hero-fade>
+        <a class="btn" href="https://booksy.com/es-es/76404_miqueas-machin-studio_barberia_69556_las-palmas-de-gran-canaria" target="_blank" rel="noopener" data-magnetic>Reservar en Booksy <span class="arr">→</span></a>
+        <a class="btn btn--ghost" href="#metodo" data-magnetic>Descubrir el método</a>
+      </div>
+    </div>
+
+    <div class="hero__visual" id="heroVisual">
+      <div class="arch" id="arch">
+        <div class="ph has-img"><img src="img/web-cortando.jpg" alt="Miqueas Machín realizando un corte personalizado en el estudio" fetchpriority="high"></div>
+      </div>
+      <svg class="guides" id="guides" viewBox="0 0 400 500" preserveAspectRatio="none" aria-hidden="true">
+        <ellipse cx="200" cy="245" rx="112" ry="150" class="g"/>
+        <line x1="200" y1="40" x2="200" y2="470" class="g soft"/>
+        <line x1="40" y1="150" x2="360" y2="150" class="g"/>
+        <line x1="40" y1="240" x2="360" y2="240" class="g soft"/>
+        <line x1="40" y1="330" x2="360" y2="330" class="g"/>
+        <circle cx="200" cy="245" r="190" class="g soft"/>
+        <path d="M110 330 Q200 420 290 330" class="g"/>
+        <circle cx="200" cy="150" r="3" class="dot"/><circle cx="200" cy="330" r="3" class="dot"/><circle cx="88" cy="245" r="3" class="dot"/><circle cx="312" cy="245" r="3" class="dot"/>
+        <text x="366" y="153">1/3</text><text x="366" y="243">2/3</text><text x="366" y="333">3/3</text>
+        <text x="14" y="30">FIG. 01 — LECTURA DEL ROSTRO</text>
+      </svg>
+      <div class="hero__badge" aria-hidden="true">
+        <svg viewBox="0 0 100 100"><defs><path id="circ" d="M50 50 m-38 0 a38 38 0 1 1 76 0 a38 38 0 1 1 -76 0"/></defs><text><textPath href="#circ">VISAGISMO · ASESORÍA DE IMAGEN · </textPath></text></svg>
+        <b>8+</b>
+      </div>
+    </div>
+  </div>
+
+  <div class="scroll-cue mono"><i></i>Scroll</div>
+
+  <div class="marquee" aria-hidden="true">
+    <div class="marquee__track">
+      <span>Asesoría con visagismo incluida en cada cita</span><span>Excelencia y cercanía</span><span>Tratamos a cada cliente como único</span><span>Fórmulas propias · sin sulfatos ni parabenos</span>
+      <span>Asesoría con visagismo incluida en cada cita</span><span>Excelencia y cercanía</span><span>Tratamos a cada cliente como único</span><span>Fórmulas propias · sin sulfatos ni parabenos</span>
+    </div>
+  </div>
+</section>
+
+<!-- ═════════ MANIFESTO ═════════ -->
+<section class="manifesto" id="estudio">
+  <div class="manifesto__grid">
+    <div class="manifesto__label mono" data-reveal>(02) — El estudio</div>
+    <p class="manifesto__text" id="manifesto">No solo cortamos el cabello. Transformamos tu estilo para que refleje tu <em class="it">verdadera personalidad</em>, porque un buen corte puede marcar la diferencia en cómo te ven, y en cómo te sientes.</p>
+
+    <div class="portrait-strip" data-reveal>
+      <div class="ph has-img"><img src="img/ig-miqueas-estudio.jpg" alt="Miqueas Machín en su estudio" loading="lazy"></div>
+      <blockquote>“La barbería no es solo mi trabajo, es mi vocación.”</blockquote>
+      <cite class="mono">— Miqueas Machín</cite>
+    </div>
+
+    <div class="stats">
+      <div class="stat" data-reveal><div class="stat__n"><span data-count="8">0</span><sup>+</sup></div><p>Años de experiencia en peluquería masculina, con todo tipo de estilos y perfiles.</p></div>
+      <div class="stat" data-reveal><div class="stat__n"><span data-count="2">0</span><sup>+</sup></div><p>Años como formador especializado en imagen y cuidado personal masculino.</p></div>
+      <div class="stat" data-reveal><div class="stat__n"><span data-count="7">0</span><sup>k</sup></div><p>Personas que siguen su trabajo en Instagram.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═════════ METHOD (visagismo) ═════════ -->
+<section class="method" id="metodo">
+  <div class="sec-head">
+    <div class="mono" data-reveal>(03) <b>— Visagismo</b></div>
+    <h2 data-split>Primero leemos tu rostro. <em class="it">Después cortamos.</em></h2>
+  </div>
+  <div class="method__wrap">
+    <div class="method__sticky" aria-hidden="true">
+      <svg viewBox="0 0 400 400" id="methodSvg">
+        <rect x="20" y="20" width="360" height="360" rx="2"/>
+        <line x1="200" y1="20" x2="200" y2="380"/><line x1="20" y1="200" x2="380" y2="200"/>
+        <g data-step="0"><ellipse cx="200" cy="200" rx="110" ry="148"/><line x1="70" y1="130" x2="330" y2="130"/><line x1="70" y1="270" x2="330" y2="270"/></g>
+        <g data-step="1"><path d="M110 120 Q200 30 290 120 L300 150 Q200 110 100 150 Z"/><circle cx="200" cy="200" r="160"/></g>
+        <g data-step="2"><path d="M120 280 Q200 360 280 280"/><path d="M140 300 Q200 340 260 300"/><line x1="90" y1="90" x2="310" y2="310"/><line x1="310" y1="90" x2="90" y2="310"/></g>
+        <g data-step="3"><circle cx="200" cy="200" r="60"/><circle cx="200" cy="200" r="100"/></g>
+        <circle class="node" cx="200" cy="52" r="5" data-step="0"/><circle class="node" cx="90" cy="200" r="5" data-step="1"/><circle class="node" cx="310" cy="200" r="5" data-step="2"/><circle class="node" cx="200" cy="348" r="5" data-step="3"/>
+        <text x="28" y="40">FIG. 02</text><text x="290" y="372" id="figTxt">LECTURA</text>
+      </svg>
+    </div>
+    <div class="method__steps">
+      <article class="step" data-i="0"><span class="step__n mono">01 / Lectura</span><h3>Estudio de proporciones</h3><p>Analizamos la forma de tu rostro, tus facciones y tu estilo de vida. El visagismo es la base: no hay un corte de moda, hay un corte para ti.</p></article>
+      <article class="step" data-i="1"><span class="step__n mono">02 / Diseño</span><h3>Un corte adaptado a ti</h3><p>Definimos volumen, líneas y texturas que resaltan tus mejores rasgos, combinando técnica y las tendencias actuales.</p></article>
+      <article class="step" data-i="2"><span class="step__n mono">03 / Detalle</span><h3>Barba y facciones</h3><p>Diseño y mantenimiento de barba y bigote con técnicas específicas para equilibrar y enmarcar el rostro.</p></article>
+      <article class="step" data-i="3"><span class="step__n mono">04 / Cuidado</span><h3>Tu imagen, en casa</h3><p>Te asesoramos para mantener el resultado con productos de alta calidad y fórmulas propias, sin sulfatos ni parabenos.</p></article>
+    </div>
+  </div>
+</section>
+
+<!-- ═════════ SERVICES ═════════ -->
+<section class="services" id="servicios">
+  <div class="sec-head">
+    <div class="mono" data-reveal>(04) <b>— Servicios</b></div>
+    <h2 data-split>Más que un corte, <em class="it">una transformación.</em></h2>
+  </div>
+  <div class="svc-list" id="svcList">
+    <a class="svc" href="#contacto" data-img="img/ig-visagismo-cartas.jpg"><span class="svc__n mono">01</span><h3>Asesoría de imagen</h3><p>Te guiamos para que tu imagen refleje tu personalidad y tus objetivos.</p><span class="svc__arr">↗</span></a>
+    <a class="svc" href="#contacto" data-img="img/web-cliente-verde.jpg"><span class="svc__n mono">02</span><h3>Cortes personalizados</h3><p>Técnicas de visagismo para un estilo que resalte tus mejores rasgos.</p><span class="svc__arr">↗</span></a>
+    <a class="svc" href="#contacto" data-img="img/ig-miqueas-cliente.jpg"><span class="svc__n mono">03</span><h3>Barba &amp; bigote</h3><p>Diseño y mantenimiento con técnicas específicas para resaltar tus facciones.</p><span class="svc__arr">↗</span></a>
+    <a class="svc" href="#contacto" data-img="img/ig-trabajo-espejo.jpg"><span class="svc__n mono">04</span><h3>Tratamientos capilares</h3><p>Desde hidrataciones profundas hasta prevención de la caída.</p><span class="svc__arr">↗</span></a>
+    <a class="svc" href="#contacto" data-img="img/ig-corte-platino.jpg"><span class="svc__n mono">05</span><h3>Coloración masculina</h3><p>Cobertura de canas y cambios de look, discretos o atrevidos, según tu estilo.</p><span class="svc__arr">↗</span></a>
+  </div>
+  <div class="svc-note mono"><span>Precios y disponibilidad en Booksy</span><span>Asesoría de visagismo incluida en cada cita</span></div>
+</section>
+<div class="svc-preview" id="svcPreview" aria-hidden="true"><div class="ph has-img"><img id="svcImg" src="img/ig-visagismo-cartas.jpg" alt=""></div></div>
+
+<!-- ═════════ PRODUCTS ═════════ -->
+<section class="products" data-reveal>
+  <div class="products__copy">
+    <span class="mono">(05) — Línea propia</span>
+    <h3>Cuidado consciente, <em class="it">fórmula propia.</em></h3>
+    <p>Champús, aceites para barba, ceras de peinado y tratamientos. Fórmulas propias, testadas por profesionales.</p>
+    <div class="chips"><span class="chip">Sin sulfatos</span><span class="chip">Sin parabenos</span><span class="chip">En el salón o por encargo</span><span class="chip">Envíos en Las Palmas</span></div>
+    <a class="btn btn--ghost" href="#contacto" data-magnetic>Pedir información <span class="arr">→</span></a>
+  </div>
+  <!-- IMG: bodegón de productos propios sobre piedra/hoja verde · horizontal -->
+  <div class="ph"><span class="ph__cross"></span><span class="ph__tag">Bodegón productos · 5:4</span></div>
+</section>
+
+<!-- ═════════ GALLERY ═════════ -->
+<section class="gallery" id="galeria">
+  <div class="gallery__pin" id="galleryPin">
+    <div class="sec-head">
+      <div class="mono" data-reveal>(06) <b>— Trabajos</b></div>
+      <h2 data-split>Cada rostro, <em class="it">una respuesta.</em></h2>
+    </div>
+    <div class="gallery__track" id="galleryTrack">
+      <figure class="gframe r45" data-cursor="view"><div class="ph has-img"><img src="img/web-cliente-retrato.jpg" alt="Cliente tras un corte con textura y barba perfilada" loading="lazy"></div><figcaption>01 — Corte &amp; barba</figcaption></figure>
+      <figure class="gframe r34 low" data-cursor="view"><div class="ph has-img"><img src="img/ig-fade.jpg" alt="Detalle de un degradado con textura" loading="lazy"></div><figcaption>02 — Degradado</figcaption></figure>
+      <figure class="gframe r169" data-cursor="view"><div class="ph has-img"><img src="img/web-estudio-b.jpg" alt="Miqueas trabajando en el estudio" loading="lazy"></div><figcaption>03 — El estudio</figcaption></figure>
+      <figure class="gframe r45" data-cursor="view"><div class="ph has-img"><img src="img/ig-cliente-espejo.jpg" alt="Cliente en el sillón del estudio" loading="lazy"></div><figcaption>04 — Resultado</figcaption></figure>
+      <figure class="gframe r11 low" data-cursor="view"><div class="ph has-img"><img src="img/web-fachada.jpg" alt="Fachada de Miqueas Machín Studio en Las Palmas" loading="lazy"></div><figcaption>05 — La puerta</figcaption></figure>
+      <figure class="gframe r34" data-cursor="view"><div class="ph has-img"><img src="img/ig-sesion-foto.jpg" alt="Sesión de fotos en el estudio" loading="lazy"></div><figcaption>06 — Backstage</figcaption></figure>
+      <div class="gend">
+        <p>Más trabajos, <em class="it">cada semana.</em></p>
+        <a class="btn" href="https://www.instagram.com/miqueasmachin/" target="_blank" rel="noopener" data-magnetic>Ver en Instagram <span class="arr">→</span></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═════════ TESTIMONIALS (PROVISIONALES — sustituir por reseñas reales) ═════════ -->
+<section class="testi" id="opiniones">
+  <div class="sec-head">
+    <div class="mono" data-reveal>(07) <b>— Opiniones</b></div>
+    <h2 data-split>Lo que dicen <em class="it">al mirarse.</em></h2>
+  </div>
+  <div class="testi__stage">
+    <div class="testi__mark" aria-hidden="true">“</div>
+    <div class="testi__body" id="quotes">
+      <figure class="quote active"><blockquote>Llevaba años con el mismo corte. Miqueas me estudió la cara antes de tocar las tijeras y salí con el mejor corte que he tenido nunca.</blockquote><footer><div class="avatar"><div class="ph"></div></div><div><b>Daniel R.</b><span class="mono">Cliente · 3 años</span></div><span class="stars">★★★★★</span></footer></figure>
+      <figure class="quote"><blockquote>Se nota que le apasiona. Te explica por qué hace cada cosa y te enseña a peinarte en casa. Atención de diez.</blockquote><footer><div class="avatar"><div class="ph"></div></div><div><b>Alejandro M.</b><span class="mono">Corte + barba</span></div><span class="stars">★★★★★</span></footer></figure>
+      <figure class="quote"><blockquote>Fui por las canas y acabé con un cambio de imagen completo. Discreto, elegante y exactamente lo que necesitaba para el trabajo.</blockquote><footer><div class="avatar"><div class="ph"></div></div><div><b>Javier S.</b><span class="mono">Coloración</span></div><span class="stars">★★★★★</span></footer></figure>
+      <figure class="quote"><blockquote>Hice su formación y me cambió la forma de trabajar. Enseña desde la experiencia real, sin rodeos.</blockquote><footer><div class="avatar"><div class="ph"></div></div><div><b>Kevin P.</b><span class="mono">Alumno de la academia</span></div><span class="stars">★★★★★</span></footer></figure>
+    </div>
+    <div class="testi__ctrl">
+      <button id="prev" aria-label="Anterior" data-magnetic>←</button>
+      <button id="next" aria-label="Siguiente" data-magnetic>→</button>
+      <div class="progress"><i id="prog"></i></div>
+      <span class="counter mono" id="tcount">01 / 04</span>
+    </div>
+  </div>
+</section>
+
+<!-- ═════════ ACADEMY ═════════ -->
+<section class="academy" id="academia">
+  <div class="ph has-img"><img src="img/web-academia-grupo.jpg" alt="Miqueas Machín impartiendo formación a un grupo de alumnos" loading="lazy"></div>
+  <div class="academy__inner">
+    <span class="mono" data-reveal>(08) — Academia · Formación profesional</span>
+    <h2 data-split>Aprende con quien <em class="it">lo hace cada día.</em></h2>
+    <div class="academy__side" data-reveal>
+      <p>Cursos para barberos y peluqueros diseñados desde la experiencia real en peluquería masculina. Formación actual, útil y aplicada.</p>
+      <a class="btn" href="https://www.instagram.com/miqueasmachinstudio/" target="_blank" rel="noopener" data-magnetic>Ver la academia <span class="arr">→</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- ═════════ CONTACT ═════════ -->
+<section class="contact" id="contacto">
+  <h2 class="contact__big" aria-label="Tu próxima versión empieza aquí">
+    <span class="line"><span>Tu próxima</span></span>
+    <span class="line"><span><em class="it">versión.</em></span></span>
+  </h2>
+  <div class="contact__grid">
+    <div class="cinfo" data-reveal>
+      <div class="crow"><span class="mono">Reservas</span><a href="https://booksy.com/es-es/76404_miqueas-machin-studio_barberia_69556_las-palmas-de-gran-canaria" target="_blank" rel="noopener">Reservar en Booksy ↗</a></div>
+      <div class="crow"><span class="mono">Teléfono</span><a href="tel:+34617666580">617 666 580</a></div>
+      <div class="crow"><span class="mono">Email</span><a href="mailto:miqueasmachinstudio@gmail.com">miqueasmachinstudio@gmail.com</a></div>
+      <div class="crow"><span class="mono">Estudio</span><span class="v">Las Palmas de Gran Canaria<br><span class="todo">[ DIRECCIÓN PENDIENTE ]</span></span></div>
+      <div class="crow"><span class="mono">Horario</span><span class="v"><span class="todo">[ HORARIO PENDIENTE ]</span></span></div>
+      <div class="crow"><span class="mono">Social</span><div class="socials"><a href="https://www.instagram.com/miqueasmachinstudio/" target="_blank" rel="noopener">Instagram estudio</a><a href="https://www.instagram.com/miqueasmachin/" target="_blank" rel="noopener">@miqueasmachin</a><a href="https://www.tiktok.com/@miqueasmachin" target="_blank" rel="noopener">TikTok</a></div></div>
+    </div>
+
+    <form class="form" id="form" data-reveal novalidate>
+      <h3>Escríbenos</h3>
+      <p>Cuéntanos qué buscas y te respondemos con una propuesta.</p>
+      <div class="form__row">
+        <div class="field"><input id="fname" name="nombre" placeholder=" " required><label for="fname">Nombre</label></div>
+        <div class="field"><input id="fphone" name="telefono" type="tel" placeholder=" "><label for="fphone">Teléfono</label></div>
+      </div>
+      <div class="field">
+        <select id="fsvc" name="servicio">
+          <option>Corte personalizado</option><option>Asesoría de imagen</option><option>Barba y bigote</option><option>Tratamiento capilar</option><option>Coloración</option><option>Academia / formación</option><option>Productos</option>
+        </select><label for="fsvc">Me interesa</label>
+      </div>
+      <div class="field"><textarea id="fmsg" name="mensaje" placeholder=" "></textarea><label for="fmsg">Mensaje</label></div>
+      <div class="form__foot">
+        <small>Se abrirá tu correo con el mensaje listo para enviar.</small>
+        <button class="btn" type="submit" data-magnetic>Enviar <span class="arr">→</span></button>
+      </div>
+    </form>
+
+    <div class="map" data-reveal>
+      <!-- MAPA: sustituir por iframe de Google Maps con la dirección real -->
+      <div class="ph"><span class="ph__cross"></span><span class="ph__tag">Mapa · Las Palmas de G.C.</span></div>
+      <div class="map__pin"><i></i></div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="foot">
+  <div class="foot__top">
+    <a href="#top" class="brand"><span class="mono-mark">MM</span><span class="brand__txt">Miqueas Machín Studio<small>Peluquería masculina en Las Palmas</small></span></a>
+    <nav><a href="#estudio">Estudio</a><a href="#servicios">Servicios</a><a href="#galeria">Trabajos</a><a href="#academia">Academia</a><a href="#contacto">Contacto</a></nav>
+  </div>
+  <div class="foot__word" aria-hidden="true">Miqueas Machín</div>
+  <div class="foot__bot mono"><span>© <span id="yr">2026</span> Miqueas Machín Studio</span><span>Excelencia y cercanía</span><a href="#top">Volver arriba ↑</a></div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
+<script>
+(() => {
+  const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const fine = matchMedia('(hover:hover) and (pointer:fine)').matches;
+  const $ = (s, c = document) => c.querySelector(s);
+  const $$ = (s, c = document) => [...c.querySelectorAll(s)];
+  document.getElementById('yr').textContent = new Date().getFullYear();
+
+  /* clock · Atlantic/Canary */
+  const clock = $('#clock');
+  const tick = () => { try { clock.textContent = new Intl.DateTimeFormat('es-ES',{timeZone:'Atlantic/Canary',hour:'2-digit',minute:'2-digit'}).format(new Date()); } catch(e){} };
+  tick(); setInterval(tick, 15000);
+
+  /* mobile menu */
+  $('#burger').addEventListener('click', () => document.body.classList.toggle('menu-open'));
+  $$('#mmenu a').forEach(a => a.addEventListener('click', () => document.body.classList.remove('menu-open')));
+
+  /* form → mailto */
+  $('#form').addEventListener('submit', e => {
+    e.preventDefault();
+    const f = e.target, n = f.nombre.value.trim();
+    if (!n) { f.nombre.focus(); return; }
+    const body = `Hola Miqueas,%0D%0A%0D%0A${encodeURIComponent(f.mensaje.value)}%0D%0A%0D%0ANombre: ${encodeURIComponent(n)}%0D%0ATeléfono: ${encodeURIComponent(f.telefono.value)}`;
+    location.href = `mailto:miqueasmachinstudio@gmail.com?subject=${encodeURIComponent('Consulta web · ' + f.servicio.value)}&body=${body}`;
+  });
+
+  /* testimonials (works even without GSAP) */
+  const quotes = $$('.quote'); let qi = 0, qTimer, qStart;
+  quotes.forEach(q => { const bq = $('blockquote', q); bq.innerHTML = bq.textContent.split(' ').map(w => `<span class="w"><span>${w}</span></span>`).join(' '); });
+  const DUR = 7000;
+  function showQuote(i){
+    const prev = quotes[qi]; qi = (i + quotes.length) % quotes.length; const cur = quotes[qi];
+    if (prev !== cur) { prev.classList.remove('active'); }
+    cur.classList.add('active');
+    $('#tcount').textContent = String(qi+1).padStart(2,'0') + ' / ' + String(quotes.length).padStart(2,'0');
+    if (window.gsap && !reduced) {
+      gsap.fromTo($$('.w > span', cur), {yPercent:110}, {yPercent:0, duration:1, ease:'expo.out', stagger:.018});
+      gsap.fromTo($('footer', cur), {opacity:0, y:20}, {opacity:1, y:0, duration:.8, delay:.3, ease:'expo.out'});
+    }
+    qStart = performance.now();
+  }
+  $('#next').addEventListener('click', () => showQuote(qi+1));
+  $('#prev').addEventListener('click', () => showQuote(qi-1));
+  qStart = performance.now();
+  (function loop(t){ const p = Math.min((t - qStart)/DUR, 1); $('#prog').style.width = (p*100)+'%'; if (p >= 1 && !reduced) showQuote(qi+1); requestAnimationFrame(loop); })(performance.now());
+
+  /* reduced motion / no libs: show everything */
+  if (reduced || !window.gsap) {
+    document.documentElement.classList.add('reduced');
+    $('.loader').remove(); document.body.classList.remove('loading');
+    $$('.manifesto__text').forEach(el => el.style.opacity = 1);
+    $$('[data-count]').forEach(el => el.textContent = el.dataset.count);
+    $$('.step').forEach(s => s.classList.add('active'));
+    return;
+  }
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  /* smooth scroll */
+  let lenis;
+  if (window.Lenis) {
+    lenis = new Lenis({ lerp: .085, smoothWheel: true });
+    lenis.on('scroll', ScrollTrigger.update);
+    gsap.ticker.add(t => lenis.raf(t * 1000));
+    gsap.ticker.lagSmoothing(0);
+    $$('a[href^="#"]').forEach(a => a.addEventListener('click', e => {
+      const id = a.getAttribute('href'); if (id.length < 2) { e.preventDefault(); lenis.scrollTo(0); return; }
+      const t = $(id); if (t) { e.preventDefault(); lenis.scrollTo(t, { offset: -20, duration: 1.6 }); }
+    }));
+  }
+
+  /* split headings into words */
+  $$('[data-split]').forEach(el => {
+    const walk = node => [...node.childNodes].map(n => {
+      if (n.nodeType === 3) return n.textContent.split(/(\s+)/).map(w => w.trim() ? `<span class="line" style="display:inline-block"><span>${w}</span></span>` : w).join('');
+      const tag = n.tagName.toLowerCase(), cls = n.className ? ` class="${n.className}"` : '';
+      return `<${tag}${cls}>${walk(n)}</${tag}>`;
+    }).join('');
+    el.innerHTML = walk(el);
+    gsap.from($$('.line > span', el), { yPercent: 110, duration: 1.3, ease: 'expo.out', stagger: .05, scrollTrigger: { trigger: el, start: 'top 85%' } });
+  });
+
+  /* generic reveals */
+  $$('[data-reveal]').forEach(el => gsap.to(el, { opacity: 1, y: 0, duration: 1.3, ease: 'expo.out', scrollTrigger: { trigger: el, start: 'top 88%' } }));
+
+  /* preloader → hero intro */
+  const count = $('.loader__count'), bar = $('.loader__bar i'), o = { v: 0 };
+  const intro = gsap.timeline({ defaults: { ease: 'expo.out' } });
+  gsap.set('.hero h1 .line > span', { yPercent: 110 });
+  gsap.set('[data-hero-fade]', { opacity: 0, y: 24 });
+  gsap.set('.hero__badge', { scale: 0, rotate: -90 });
+  gsap.set('.nav', { yPercent: -100, opacity: 0 });
+  const g = $$('#guides .g'); g.forEach(p => { const L = p.getTotalLength ? p.getTotalLength() : 1000; p.style.strokeDasharray = p.classList.contains('soft') ? '' : L; p.style.strokeDashoffset = L; });
+  gsap.set('#guides text, #guides .dot', { opacity: 0 });
+
+  intro
+    .to('.loader__name span', { y: 0, duration: 1 })
+    .to(o, { v: 100, duration: 1.4, ease: 'power2.inOut', onUpdate: () => { count.textContent = String(Math.round(o.v)).padStart(3,'0'); bar.style.width = o.v + '%'; } }, '<')
+    .to('.loader__name span', { yPercent: -110, duration: .8, ease: 'expo.in' })
+    .to('.loader', { clipPath: 'inset(0 0 100% 0)', duration: 1.1, ease: 'expo.inOut', onComplete: () => { $('.loader').remove(); document.body.classList.remove('loading'); } }, '-=.2')
+    .to('#arch', { clipPath: 'inset(0% 0 0 0 round 999px 999px 18px 18px)', duration: 1.8, ease: 'expo.inOut' }, '-=.8')
+    .from('#arch .ph', { scale: 1.35, duration: 2.2 }, '<')
+    .to('.hero h1 .line > span', { yPercent: 0, duration: 1.4, stagger: .1 }, '-=1.5')
+    .to(g, { strokeDashoffset: 0, duration: 2, ease: 'power2.inOut', stagger: .08 }, '-=1.1')
+    .to('#guides text, #guides .dot', { opacity: 1, duration: .8, stagger: .05 }, '-=1.2')
+    .to('[data-hero-fade]', { opacity: 1, y: 0, duration: 1.1, stagger: .1 }, '-=1.8')
+    .to('.hero__badge', { scale: 1, rotate: 0, duration: 1.4 }, '-=1.2')
+    .to('.nav', { yPercent: 0, opacity: 1, duration: 1 }, '-=1.2');
+
+  /* hero mouse parallax */
+  if (fine) {
+    const hv = $('#heroVisual');
+    const qx = gsap.quickTo('#arch .ph', 'x', { duration: 1.2, ease: 'power3' }), qy = gsap.quickTo('#arch .ph', 'y', { duration: 1.2, ease: 'power3' });
+    const gx = gsap.quickTo('#guides', 'x', { duration: 1.4, ease: 'power3' }), gy = gsap.quickTo('#guides', 'y', { duration: 1.4, ease: 'power3' });
+    $('#hero').addEventListener('mousemove', e => { const x = e.clientX / innerWidth - .5, y = e.clientY / innerHeight - .5; qx(x * -24); qy(y * -24); gx(x * 18); gy(y * 18); });
+  }
+  /* hero scroll-out */
+  gsap.to('.hero__copy', { yPercent: -18, opacity: .2, ease: 'none', scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true } });
+  gsap.to('#heroVisual', { yPercent: 12, scale: .94, ease: 'none', scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true } });
+
+  /* nav state */
+  const nav = $('#nav'); let lastY = 0;
+  ScrollTrigger.create({ start: 0, end: 'max', onUpdate: s => {
+    const y = s.scroll(); nav.classList.toggle('scrolled', y > 60);
+    nav.classList.toggle('hide', y > 400 && y > lastY && !document.body.classList.contains('menu-open')); lastY = y;
+  }});
+
+  /* manifesto word-by-word light-up */
+  const man = $('#manifesto');
+  const wrapWords = node => [...node.childNodes].map(n => n.nodeType === 3
+    ? n.textContent.split(/(\s+)/).map(w => w.trim() ? `<span class="w">${w}</span>` : w).join('')
+    : `<${n.tagName.toLowerCase()} class="${n.className}">${wrapWords(n)}</${n.tagName.toLowerCase()}>`).join('');
+  man.innerHTML = wrapWords(man);
+  gsap.to($$('.w', man), { opacity: 1, stagger: .1, ease: 'none', scrollTrigger: { trigger: man, start: 'top 78%', end: 'bottom 45%', scrub: true } });
+
+  /* counters */
+  $$('[data-count]').forEach(el => { const t = { v: 0 }; gsap.to(t, { v: +el.dataset.count, duration: 2, ease: 'power3.out', scrollTrigger: { trigger: el, start: 'top 88%' }, onUpdate: () => el.textContent = Math.round(t.v) }); });
+
+  /* method steps ↔ figure */
+  const figTxt = $('#figTxt'), names = ['LECTURA','DISEÑO','DETALLE','CUIDADO'];
+  const setStep = i => {
+    $$('.step').forEach((s, k) => s.classList.toggle('active', k === i));
+    $$('#methodSvg [data-step]').forEach(n => { const on = +n.dataset.step <= i; n.classList.toggle('on', on); $$('*', n).forEach(c => c.classList.toggle('on', on)); });
+    figTxt.textContent = names[i];
+  };
+  setStep(0);
+  $$('.step').forEach((s, i) => ScrollTrigger.create({ trigger: s, start: 'top 60%', end: 'bottom 60%', onToggle: self => self.isActive && setStep(i) }));
+  gsap.from('#methodSvg', { rotate: -12, scale: .9, opacity: 0, duration: 1.6, ease: 'expo.out', scrollTrigger: { trigger: '.method__wrap', start: 'top 80%' } });
+
+  /* services cursor preview */
+  const prev = $('#svcPreview'), svcImg = $('#svcImg');
+  $$('.svc').forEach(s => { const i = new Image(); i.src = s.dataset.img; });
+  if (fine) {
+    const px = gsap.quickTo(prev, 'x', { duration: .7, ease: 'power3' }), py = gsap.quickTo(prev, 'y', { duration: .7, ease: 'power3' });
+    const pr = gsap.quickTo(prev, 'rotate', { duration: .9, ease: 'power3' });
+    let lx = 0;
+    $$('.svc').forEach(s => {
+      s.addEventListener('mouseenter', () => { svcImg.src = s.dataset.img; prev.classList.add('show'); });
+      s.addEventListener('mouseleave', () => prev.classList.remove('show'));
+    });
+    $('#svcList').addEventListener('mousemove', e => { px(e.clientX); py(e.clientY); pr(gsap.utils.clamp(-12, 12, (e.clientX - lx) * .6)); lx = e.clientX; });
+  }
+  gsap.from('.svc', { opacity: 0, y: 50, duration: 1.2, ease: 'expo.out', stagger: .08, scrollTrigger: { trigger: '#svcList', start: 'top 85%' } });
+
+  /* gallery horizontal pin (desktop) */
+  const mm = gsap.matchMedia();
+  mm.add('(min-width: 901px)', () => {
+    const track = $('#galleryTrack');
+    const dist = () => track.scrollWidth - innerWidth;
+    gsap.to(track, { x: () => -dist(), ease: 'none', scrollTrigger: { trigger: '#galleryPin', start: 'top top', end: () => '+=' + dist(), pin: true, scrub: 1, invalidateOnRefresh: true, anticipatePin: 1 } });
+    $$('.gframe .ph').forEach(p => gsap.fromTo(p, { scale: 1.25 }, { scale: 1, ease: 'none', scrollTrigger: { trigger: '#galleryPin', start: 'top top', end: () => '+=' + dist(), scrub: true } }));
+  });
+
+  /* academy parallax + reveal */
+  gsap.fromTo('.academy > .ph', { yPercent: -10, scale: 1.15 }, { yPercent: 10, scale: 1.15, ease: 'none', scrollTrigger: { trigger: '.academy', start: 'top bottom', end: 'bottom top', scrub: true } });
+  gsap.fromTo('.academy', { clipPath: 'inset(8% 6% 8% 6% round 28px)' }, { clipPath: 'inset(0% 0% 0% 0% round 28px)', ease: 'none', scrollTrigger: { trigger: '.academy', start: 'top bottom', end: 'top 25%', scrub: true } });
+
+  /* contact big type */
+  gsap.from('.contact__big .line > span', { yPercent: 110, duration: 1.5, ease: 'expo.out', stagger: .12, scrollTrigger: { trigger: '.contact__big', start: 'top 82%' } });
+  gsap.from('.foot__word', { yPercent: 40, opacity: 0, duration: 1.6, ease: 'expo.out', scrollTrigger: { trigger: '.foot', start: 'top 90%' } });
+
+  /* testimonial first reveal */
+  ScrollTrigger.create({ trigger: '.testi__stage', start: 'top 75%', once: true, onEnter: () => showQuote(qi) });
+
+  /* cursor + magnetic */
+  if (fine) {
+    const c = $('.cursor'), d = $('.cursor-dot');
+    const cx = gsap.quickTo(c, 'x', { duration: .5, ease: 'power3' }), cy = gsap.quickTo(c, 'y', { duration: .5, ease: 'power3' });
+    const dx = gsap.quickTo(d, 'x', { duration: .08 }), dy = gsap.quickTo(d, 'y', { duration: .08 });
+    addEventListener('mousemove', e => { cx(e.clientX); cy(e.clientY); dx(e.clientX); dy(e.clientY); });
+    $$('a,button,select,input,textarea').forEach(el => { el.addEventListener('mouseenter', () => c.classList.add('is-link')); el.addEventListener('mouseleave', () => c.classList.remove('is-link')); });
+    $$('[data-cursor="view"]').forEach(el => { el.addEventListener('mouseenter', () => c.classList.add('is-view')); el.addEventListener('mouseleave', () => c.classList.remove('is-view')); });
+    $$('[data-magnetic]').forEach(el => {
+      const mx = gsap.quickTo(el, 'x', { duration: .6, ease: 'elastic.out(1,.4)' }), my = gsap.quickTo(el, 'y', { duration: .6, ease: 'elastic.out(1,.4)' });
+      el.addEventListener('mousemove', e => { const r = el.getBoundingClientRect(); mx((e.clientX - r.left - r.width/2) * .3); my((e.clientY - r.top - r.height/2) * .35); });
+      el.addEventListener('mouseleave', () => { mx(0); my(0); });
+    });
+  }
+
+  addEventListener('load', () => ScrollTrigger.refresh());
+})();
+</script>
+</body>
+</html>
